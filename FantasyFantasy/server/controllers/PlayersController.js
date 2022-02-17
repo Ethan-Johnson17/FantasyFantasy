@@ -7,8 +7,10 @@ export class PlayersController extends BaseController {
     super('api/players')
     this.router
       .get('', this.getAll)
-      .use(Auth0Provider.getAuthorizedUserInfo)
+      // .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
+      .post('/all', this.createAll)
+      .delete('/:id', this.remove)
   }
 
   async getAll(req, res, next) {
@@ -23,8 +25,30 @@ export class PlayersController extends BaseController {
 
   async create(req, res, next) {
     try {
-      req.body.accountId = req.userInfo.id
+      // req.body.accountId = req.userInfo.id
       const player = await playersService.create(req.body)
+      return res.send(player)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async createAll(req, res, next) {
+    try {
+      // req.body.accountId = req.userInfo.id
+      const player = req.forEach(p => {
+        playersService.create(req.body)
+      })
+      return res.send(player)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async remove(req, res, next) {
+    try {
+      // req.body.accountId = req.userInfo.id
+      const player = playersService.create(req.body)
       return res.send(player)
     } catch (error) {
       next(error)

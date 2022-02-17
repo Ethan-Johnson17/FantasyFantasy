@@ -1,0 +1,20 @@
+<div class="col" (dblclick)="onToggle(player)" [@first]="player.starter">
+  <div class="row">
+    <div class="col-md-4 p-3">
+      <p>{{ player.player_name }}</p>
+    </div>
+    <div class="col-md-4 text-center p-3">
+      <p>{{ player.position }}</p>
+    </div>
+    <div class="col-md-3 text-center p-3">
+      <p>{{ player.jerseyNumber }}</p>
+    </div>
+    <div class="col-md-1 mt-2">
+      <i
+        class="mdi mdi-close-thick text-danger fs-3 action"
+        title="release player"
+        (click)="releasePlayer(player)"
+      ></i>
+    </div>
+  </div>
+</div>

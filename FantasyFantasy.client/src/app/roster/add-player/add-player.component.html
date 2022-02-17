@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSubmit()" class="mb-5 card p-3">
+  <div class="card-header"><h3>Sign a Player</h3></div>
+  <div class="card-body">
+    <div class="form-control my-1">
+      <label class="form-label me-2" for="player_name">Player Name</label>
+      <input
+        type="text"
+        name="player_name"
+        [(ngModel)]="player_name"
+        id="player_name"
+        placeholder="Player name"
+      />
+    </div>
+    <div class="form-control my-1">
+      <label class="form-label me-2" for="postion">Postion</label>
+      <input
+        type="text"
+        name="postion"
+        [(ngModel)]="position"
+        id="postion"
+        placeholder="Postion"
+      />
+    </div>
+    <div class="form-control my-1">
+      <label class="form-label me-2" for="jerseyNumber">Jersey Number</label>
+      <input
+        type="number"
+        name="jerseyNumber"
+        [(ngModel)]="jerseyNumber"
+        id="jerseyNumber"
+        placeholder="Jersey Number"
+      />
+    </div>
+    <div class="form-control my-1 form-control-check">
+      <label class="form-label me-2" for="starter">Starter</label>
+      <input
+        type="checkbox"
+        name="starter"
+        [(ngModel)]="starter"
+        id="starter"
+      />
+    </div>
+    <button class="mdc-button mdc-button--raised" type="submit">
+      <span class="mdc-button__label">Sign player</span>
+    </button>
+  </div>
+</form>

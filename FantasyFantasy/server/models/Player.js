@@ -5,10 +5,10 @@ export const PlayerSchema = new Schema(
   {
     player_name: { type: String, required: true },
     position: { type: String, required: true },
-    stats: { type: Object, required: true },
-    team: { type: String, required: true },
-    fantasy_points: { type: Object, required: true },
-    accountId: { type: String, required: true }
+    stats: { type: Object },
+    team: { type: String },
+    fantasy_points: { type: Object },
+    accountId: { type: String }
   }, { timestamps: true, toJSON: { virtuals: true } }
 )
 

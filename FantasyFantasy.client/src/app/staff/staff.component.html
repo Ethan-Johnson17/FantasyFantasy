@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row" id="staff">
+    <div class="col-md-12">
+      <h2>Staff:</h2>
+    </div>
+  </div>
+  <div class="row d-flex">
+    <div class="col-md-4">
+      <h4>Coach Name</h4>
+    </div>
+    <div class="col-md-4 text-center">
+      <h4>Position</h4>
+    </div>
+    <hr />
+  </div>
+  <div
+    class="row border rosterRow border-3 rounded my-2 border-success"
+    *ngFor="let coach of coaches"
+  >
+    <div class="col-md-4 text-white p-3">
+      <p class="text-success">{{ coach.name }}</p>
+    </div>
+    <div class="col-md-4 text-center p-3">
+      <p class="text-success">{{ coach.position }}</p>
+    </div>
+    <!-- <div class="col-md-12">
+      <app-player></app-player>
+    </div> -->
+  </div>
+</div>
