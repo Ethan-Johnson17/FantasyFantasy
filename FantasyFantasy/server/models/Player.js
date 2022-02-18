@@ -8,7 +8,8 @@ export const PlayerSchema = new Schema(
     stats: { type: Object },
     team: { type: String },
     fantasy_points: { type: Object },
-    accountId: { type: String }
+    accountId: { type: String },
+    characterId: { type: String }
   }, { timestamps: true, toJSON: { virtuals: true } }
 )
 
@@ -17,4 +18,10 @@ PlayerSchema.virtual('account', {
   foreignField: '_id',
   justOne: true,
   ref: 'Profile'
+})
+PlayerSchema.virtual('character', {
+  localField: 'characterId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Character'
 })
