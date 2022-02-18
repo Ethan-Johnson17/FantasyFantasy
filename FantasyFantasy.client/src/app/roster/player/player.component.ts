@@ -7,6 +7,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { FPlayer } from 'src/app/FPlayer';
 
 @Component({
   selector: 'app-player',
@@ -21,20 +22,20 @@ import {
   ],
 })
 export class PlayerComponent implements OnInit {
-  @Input() player!: Player;
-  @Input() fas!: Player;
-  @Output() removePlayer: EventEmitter<Player> = new EventEmitter();
-  @Output() onToggleStarter: EventEmitter<Player> = new EventEmitter();
+  @Input() player!: FPlayer;
+  @Input() fas!: FPlayer;
+  @Output() removePlayer: EventEmitter<FPlayer> = new EventEmitter();
+  @Output() onToggleStarter: EventEmitter<FPlayer> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  releasePlayer(player: Player) {
+  releasePlayer(player: FPlayer) {
     this.removePlayer.emit(player);
   }
 
-  onToggle(player: Player) {
+  onToggle(player: FPlayer) {
     this.onToggleStarter.emit(player);
     // this.player.starter === false
     //   ? (this.depthChart = true)

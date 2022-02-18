@@ -1,22 +1,21 @@
 <div class="container">
-  <div class="row" id="roster">
-    <button (click)="generate()">Testing</button>
-    <div class="col-md-6">
+  <!-- <div class="row" id="roster"> -->
+  <!-- <div class="col-md-6">
       <h2>Roster:</h2>
-    </div>
-    <div class="col-md-6 text-end">
-      <i
-        class="mdi action fs-1 mb-2"
-        [ngClass]="showAddPlayer ? 'mdi-close-thick' : 'mdi-plus-thick'"
-        title="{{ showAddPlayer ? 'Close' : 'Add Player' }}"
-        (click)="toggleAddPlayer()"
-      ></i>
-      <app-add-player
+    </div> -->
+  <!-- <div class="col-md-6 text-end"> -->
+  <!-- <i
+    class="mdi action fs-1 mb-2"
+    [ngClass]="showAddPlayer ? 'mdi-close-thick' : 'mdi-plus-thick'"
+    title="{{ showAddPlayer ? 'Close' : 'Add Player' }}"
+    (click)="toggleAddPlayer()"
+  ></i> -->
+  <!-- <app-add-player
         (onAddPlayer)="addPlayer($event)"
         *ngIf="showAddPlayer == true"
-      ></app-add-player>
-    </div>
-  </div>
+      ></app-add-player> -->
+  <!-- </div> -->
+  <!-- </div> -->
   <h2>Fantasy Team</h2>
   <app-f-players
     class="row border border-3 rounded my-2 border-success action"
@@ -30,7 +29,7 @@
       <h4>Player Name</h4>
     </div>
     <div class="col-md-4 text-center"><h4>Position</h4></div>
-    <div class="col-md-4 text-center"><h4>Jersey Number</h4></div>
+    <!-- <div class="col-md-4 text-center"><h4>Jersey Number</h4></div> -->
     <hr />
   </div>
   <app-player
@@ -62,17 +61,17 @@
     </div> -->
   </app-player>
   <h3 id="fas">Available Players</h3>
-  <app-free-agents
+  <!-- <app-f-players
     class="row border border-3 rounded my-2 border-success text-dark action"
-    [player]="player"
-    *ngFor="let player of fas"
-  ></app-free-agents>
-  <h3 id="fs">Fantasy Scores</h3>
+    *ngFor="let player of availablePlayers"
+    [fplayer]="player"
+  ></app-f-players>
+  <h3 id="fs">Fantasy Scores</h3> -->
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="row">
-          <form (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="yearSelection()">
             <div class="form-control my-1 col-md-5">
               <label class="form-label me-2" for="year">Year</label>
               <input
@@ -86,7 +85,8 @@
                 required
               />
             </div>
-            <div class="form-control my-1 col-md-4">
+            <!-- NOTE This is for weekly scores -->
+            <!-- <div class="form-control my-1 col-md-4">
               <label class="form-label me-2" for="week">Week</label>
               <input
                 type="number"
@@ -98,7 +98,7 @@
                 max="17"
                 required
               />
-            </div>
+            </div> -->
             <button class="mdc-button mdc-button--raised" type="submit">
               <span class="mdc-button__label">Get Results</span>
             </button>

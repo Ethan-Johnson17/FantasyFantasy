@@ -13,8 +13,8 @@ import * as fPlayersData from '../../../players.json';
   styleUrls: ['./roster.component.scss'],
 })
 export class RosterComponent implements OnInit {
-  players: Player[] = [];
-  fas: Player[] = [];
+  players: FPlayer[] = [];
+  availablePlayers: FPlayer[] = [];
   fPlayers: FPlayer[] = [];
   fantasyTeam: FPlayer[] = [];
   showAddPlayer!: boolean;
@@ -23,8 +23,6 @@ export class RosterComponent implements OnInit {
   week!: number;
   player_name!: string;
   playerPosition!: string;
-
-  playerArray: any;
 
   constructor(
     private playerService: PlayerService,
@@ -37,15 +35,15 @@ export class RosterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playerService
-      .getPlayers()
-      .subscribe((players) => (this.players = players));
-    this.playerService
-      .getAvailablePlayers()
-      .subscribe((fas) => (this.fas = fas));
-    this.fantasyService
-      .getFantasyPlayers()
-      .subscribe((fPlayers) => (this.fPlayers = fPlayers));
+    // this.playerService
+    //   .getPlayers()
+    //   .subscribe((players) => (this.players = players));
+    // this.playerService
+    //   .getAvailablePlayers()
+    //   .subscribe((fas) => (this.fas = fas));
+    // this.fantasyService
+    //   .getFantasyScores()
+    //   .subscribe((players) => (this.fPlayers = players));
     this.fantasyService
       .getFantasyTeam()
       .subscribe((fantasyTeam) => (this.fantasyTeam = fantasyTeam));
@@ -58,11 +56,11 @@ export class RosterComponent implements OnInit {
   //   }
   // }
 
-  addPlayer(newPlayer: Player) {
-    this.playerService
-      .signPlayer(newPlayer)
-      .subscribe((newPlayer) => this.players.push(newPlayer));
-  }
+  // addPlayer(newPlayer: Player) {
+  //   this.playerService
+  //     .signPlayer(newPlayer)
+  //     .subscribe((newPlayer) => this.players.push(newPlayer));
+  // }
 
   onRemovePlayer(player: Player) {
     this.playerService
@@ -81,25 +79,6 @@ export class RosterComponent implements OnInit {
     this.uiService.toggleAddPlayer();
   }
 
-  onSubmit() {
-    if (!this.year || !this.week) {
-      alert('Please add more information');
-      return;
-    } else if (
-      this.year < 1999 ||
-      this.year > 2021 ||
-      this.week < 1 ||
-      this.week > 17
-    ) {
-      alert('invalid entry');
-      return;
-    }
-    let data = { year: this.year, week: this.week };
-    const search = this.fantasyService
-      .getFantasyPlayersQuery(data)
-      .subscribe((fPlayers) => (this.fPlayers = fPlayers));
-  }
-
   addToTeam(fplayer: FPlayer) {
     this.fantasyService
       .addPlayer(fplayer)
@@ -116,6 +95,20 @@ export class RosterComponent implements OnInit {
             (p) => p.id !== fplayer.id
           ))
       );
+  }
+
+  async yearSelection() {
+    if (!this.year) {
+      alert('Please add more information');
+      return;
+    } else if (this.year < 1999 || this.year > 2019) {
+      alert('invalid entry');
+      return;
+    }
+    let data = { year: this.year };
+    return await this.fantasyService
+      .getFantasyPlayersQuery(data)
+      .subscribe((p) => (this.fPlayers = p));
   }
 
   filterPlayers() {
@@ -140,11 +133,5 @@ export class RosterComponent implements OnInit {
       const nameFilter = this.fPlayers.filter((fp) => fp.player_name == name);
       this.fPlayers = nameFilter;
     }
-  }
-
-  generate() {
-    this.fantasyService
-      .generatePlayers()
-      .subscribe((p) => (this.playerArray = p));
   }
 }
