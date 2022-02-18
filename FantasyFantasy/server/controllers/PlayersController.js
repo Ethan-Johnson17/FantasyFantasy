@@ -36,10 +36,11 @@ export class PlayersController extends BaseController {
   async createAll(req, res, next) {
     try {
       // req.body.accountId = req.userInfo.id
-      const player = req.forEach(p => {
+      const player = req.body
+      player.forEach(p => {
         playersService.create(req.body)
+        return res.send(player)
       })
-      return res.send(player)
     } catch (error) {
       next(error)
     }
