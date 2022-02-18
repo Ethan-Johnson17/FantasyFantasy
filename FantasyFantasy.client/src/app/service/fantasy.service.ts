@@ -19,18 +19,23 @@ export class FantasyService {
   private fantasyApiUrl =
     'https://www.fantasyfootballdatapros.com/api/players/';
   private apiUrl = 'http://localhost:5000/api/fantasyTeam';
-  private testapiUrl = 'http://localhost:5000/api/players/all';
+  private allFPUrl = 'http://localhost:5000/api/players';
 
   constructor(private http: HttpClient) {}
 
-  getFantasyPlayers(): Observable<FPlayer[]> {
+  getFantasyScores(): Observable<FPlayer[]> {
     const players = this.http.get<FPlayer[]>(this.defaultFantasyApiUrl);
     return players;
   }
 
-  getFantasyPlayersQuery(data: { year: number; week: number }) {
+  getAllFantasyPlayers(): Observable<FPlayer[]> {
+    const players = this.http.get<FPlayer[]>(this.allFPUrl);
+    return players;
+  }
+
+  getFantasyPlayersQuery(data: { year: number }) {
     const players = this.http.get<FPlayer[]>(
-      this.fantasyApiUrl + `${data.year}/${data.week}`
+      this.fantasyApiUrl + `${data.year}/all`
     );
     console.log(players);
     return players;
@@ -40,21 +45,6 @@ export class FantasyService {
     const fTeam = this.http.post<FPlayer>(this.apiUrl, fplayer);
     return fTeam;
   }
-
-  generatePlayers() {
-    const generated = this.http.post(this.testapiUrl, fPlayersData);
-    console.log(generated);
-    return generated;
-  }
-  // generatePlayers() {
-  //   let gfPlayers = [];
-  //   gfPlayers = Players;
-  //   gfPlayers.forEach((p) => {
-  //     const fTeam = this.http.post(this.testapiUrl, p);
-  //     console.log(p.position);
-  //     return fTeam;
-  //   });
-  // }
 
   getFantasyTeam(): Observable<FPlayer[]> {
     return this.http.get<FPlayer[]>(this.apiUrl);
