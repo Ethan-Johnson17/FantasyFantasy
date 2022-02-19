@@ -20,6 +20,7 @@ import { LoginButtonComponent } from './login-button/login-button.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
+import { SquadComponent } from './squad/squad.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
     FreeAgentsComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
+    SquadComponent,
   ],
   imports: [
     BrowserModule,

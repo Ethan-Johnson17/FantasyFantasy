@@ -13,7 +13,7 @@ const HttpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class FantasyService {
+export class PlayersService {
   private defaultFantasyApiUrl =
     'https://www.fantasyfootballdatapros.com/api/players/2019/1';
   private fantasyApiUrl =
@@ -53,5 +53,19 @@ export class FantasyService {
   removePlayer(fplayer: FPlayer): Observable<FPlayer> {
     const url = `${this.apiUrl}/${fplayer.id}`;
     return this.http.delete<FPlayer>(url);
+  }
+
+  deletePlayer(player: FPlayer): Observable<FPlayer> {
+    const url = `${this.apiUrl}/${player?.id}`;
+    return this.http.delete<FPlayer>(url);
+  }
+
+  togglePlayer(player: FPlayer): Observable<FPlayer> {
+    const url = `${this.apiUrl}/${player?.id}`;
+    return this.http.put<FPlayer>(url, player, HttpOptions);
+  }
+
+  signPlayer(player: FPlayer): Observable<FPlayer> {
+    return this.http.post<FPlayer>(this.apiUrl, player, HttpOptions);
   }
 }

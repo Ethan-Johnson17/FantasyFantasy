@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../Player';
-import { PlayerService } from '../service/player.service';
+import { CharactersService } from '../service/characters.service';
 import { UiService } from '../service/ui.service';
 import { Subscription } from 'rxjs';
-import { FantasyService } from '../service/fantasy.service';
+import { PlayersService } from '../service/players.service';
 import { FPlayer } from '../FPlayer';
 import * as fPlayersData from '../../../players.json';
 
@@ -25,9 +25,8 @@ export class RosterComponent implements OnInit {
   playerPosition!: string;
 
   constructor(
-    private playerService: PlayerService,
-    private uiService: UiService,
-    private fantasyService: FantasyService
+    private playersService: PlayersService,
+    private uiService: UiService
   ) {
     this.subscription = this.uiService
       .onToggle()
@@ -35,16 +34,16 @@ export class RosterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.playerService
+    // this.playersService
     //   .getPlayers()
     //   .subscribe((players) => (this.players = players));
-    // this.playerService
+    // this.playersService
     //   .getAvailablePlayers()
     //   .subscribe((fas) => (this.fas = fas));
-    // this.fantasyService
+    // this.playersService
     //   .getFantasyScores()
     //   .subscribe((players) => (this.fPlayers = players));
-    this.fantasyService
+    this.playersService
       .getFantasyTeam()
       .subscribe((fantasyTeam) => (this.fantasyTeam = fantasyTeam));
   }
@@ -62,17 +61,17 @@ export class RosterComponent implements OnInit {
   //     .subscribe((newPlayer) => this.players.push(newPlayer));
   // }
 
-  onRemovePlayer(player: Player) {
-    this.playerService
+  onRemovePlayer(player: FPlayer) {
+    this.playersService
       .deletePlayer(player)
       .subscribe(
         () => (this.players = this.players.filter((p) => p.id !== player.id))
       );
   }
 
-  toggleStarter(player: Player) {
+  toggleStarter(player: FPlayer) {
     player.starter = !player.starter;
-    this.playerService.togglePlayer(player).subscribe();
+    this.playersService.togglePlayer(player).subscribe();
   }
 
   toggleAddPlayer() {
@@ -80,14 +79,14 @@ export class RosterComponent implements OnInit {
   }
 
   addToTeam(fplayer: FPlayer) {
-    this.fantasyService
+    this.playersService
       .addPlayer(fplayer)
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
     console.log('fteam', this.fantasyTeam);
   }
 
   removeFromTeam(fplayer: FPlayer) {
-    this.fantasyService
+    this.playersService
       .removePlayer(fplayer)
       .subscribe(
         () =>
@@ -106,7 +105,7 @@ export class RosterComponent implements OnInit {
       return;
     }
     let data = { year: this.year };
-    return await this.fantasyService
+    return await this.playersService
       .getFantasyPlayersQuery(data)
       .subscribe((p) => (this.fPlayers = p));
   }

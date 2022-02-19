@@ -11,7 +11,7 @@ const HttpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class PlayerService {
+export class CharactersService {
   private apiUrl = 'http://localhost:5000/api/players';
   private faApiUrl = 'http://localhost:5000/api/availablePlayers';
 
