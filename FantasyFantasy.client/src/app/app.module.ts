@@ -22,6 +22,8 @@ import { environment as env } from '../environments/environment';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { SquadComponent } from './squad/squad.component';
 
+import { Routes, RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,10 @@ import { SquadComponent } from './squad/squad.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot([
+      { path: 'roster', component: RosterComponent },
+      { path: 'squad', component: SquadComponent },
+    ]),
     AuthModule.forRoot({
       domain: 'ethan-codeworks.us.auth0.com',
       clientId: '0EJ2LJh44xECoxvsuXQDV7WQTlpJf0LK',

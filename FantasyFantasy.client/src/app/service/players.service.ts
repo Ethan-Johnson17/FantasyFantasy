@@ -46,10 +46,6 @@ export class PlayersService {
     return fTeam;
   }
 
-  getFantasyTeam(): Observable<FPlayer[]> {
-    return this.http.get<FPlayer[]>(this.apiUrl);
-  }
-
   removePlayer(fplayer: FPlayer): Observable<FPlayer> {
     const url = `${this.apiUrl}/${fplayer.id}`;
     return this.http.delete<FPlayer>(url);

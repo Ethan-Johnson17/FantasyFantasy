@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { PlayersService } from '../service/players.service';
 import { FPlayer } from '../FPlayer';
 import * as fPlayersData from '../../../players.json';
+import { AccountService } from '../service/account.service';
 
 @Component({
   selector: 'app-roster',
@@ -26,6 +27,7 @@ export class RosterComponent implements OnInit {
 
   constructor(
     private playersService: PlayersService,
+    private accountService: AccountService,
     private uiService: UiService
   ) {
     this.subscription = this.uiService
@@ -43,8 +45,8 @@ export class RosterComponent implements OnInit {
     // this.playersService
     //   .getFantasyScores()
     //   .subscribe((players) => (this.fPlayers = players));
-    this.playersService
-      .getFantasyTeam()
+    this.accountService
+      .getMyPlayers()
       .subscribe((fantasyTeam) => (this.fantasyTeam = fantasyTeam));
   }
 
