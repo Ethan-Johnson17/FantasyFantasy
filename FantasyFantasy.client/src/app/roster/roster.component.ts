@@ -7,6 +7,8 @@ import { PlayersService } from '../service/players.service';
 import { FPlayer } from '../FPlayer';
 import * as fPlayersData from '../../../players.json';
 import { AccountService } from '../service/account.service';
+import { AuthService } from '@auth0/auth0-angular';
+import { Account } from '../Account';
 
 @Component({
   selector: 'app-roster',
@@ -24,11 +26,14 @@ export class RosterComponent implements OnInit {
   week!: number;
   player_name!: string;
   playerPosition!: string;
+  profileJson: string = '';
 
   constructor(
     private playersService: PlayersService,
+    public authService: AuthService,
     private accountService: AccountService,
-    private uiService: UiService
+    private uiService: UiService,
+    private charactersService: CharactersService
   ) {
     this.subscription = this.uiService
       .onToggle()
@@ -36,6 +41,9 @@ export class RosterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+    );
     // this.playersService
     //   .getPlayers()
     //   .subscribe((players) => (this.players = players));
@@ -53,7 +61,6 @@ export class RosterComponent implements OnInit {
   // findPlayer(playerName: any) {
   //   const found = this.players.find((p) => p.playerName == playerName);
   //   if (found?.playerName == playerName) {
-  //     console.log(true);
   //   }
   // }
 
@@ -84,7 +91,7 @@ export class RosterComponent implements OnInit {
     this.playersService
       .addPlayer(fplayer)
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
-    console.log('fteam', this.fantasyTeam);
+    this.charactersService.createCharacter(fplayer);
   }
 
   removeFromTeam(fplayer: FPlayer) {

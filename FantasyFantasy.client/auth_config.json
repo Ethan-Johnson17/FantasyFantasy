@@ -1,4 +1,6 @@
 {
   "domain": "ethan-codeworks.us.auth0.com",
-  "clientId": "0EJ2LJh44xECoxvsuXQDV7WQTlpJf0LK"
+  "clientId": "0EJ2LJh44xECoxvsuXQDV7WQTlpJf0LK",
+  "audience": "https://EthanDev.com",
+  "serverUrl": "http://localhost:5000"
 }

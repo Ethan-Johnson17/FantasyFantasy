@@ -37,12 +37,11 @@ export class PlayersService {
     const players = this.http.get<FPlayer[]>(
       this.fantasyApiUrl + `${data.year}/all`
     );
-    console.log(players);
     return players;
   }
 
   addPlayer(fplayer: FPlayer) {
-    const fTeam = this.http.post<FPlayer>(this.apiUrl, fplayer);
+    const fTeam = this.http.post<FPlayer>(this.allFPUrl, fplayer);
     return fTeam;
   }
 

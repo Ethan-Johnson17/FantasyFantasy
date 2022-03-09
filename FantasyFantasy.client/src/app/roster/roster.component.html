@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="authService.user$ | async as user">
   <!-- <div class="row" id="roster"> -->
   <!-- <div class="col-md-6">
       <h2>Roster:</h2>

@@ -1,39 +1,45 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 
 export interface CarouselContext {
-  $implicit: string
+  $implicit: string;
   controller: {
-    next: () => void
-    prev: () => void
-  }
+    next: () => void;
+    prev: () => void;
+  };
 }
 
 @Directive({
-  selector: '[appSchedule]'
+  selector: '[appSchedule]',
 })
 export class ScheduleDirective implements OnInit {
   context!: CarouselContext;
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef
-  ) { }
+  ) {}
   @Input('appScheduleFrom') opponents!: string[];
-  index = 0
+  index = 0;
 
   next() {
     this.index++;
     if (this.index >= this.opponents.length) {
-      this.index = 0
+      this.index = 0;
     }
-    this.context.$implicit = this.opponents[this.index]
+    this.context.$implicit = this.opponents[this.index];
   }
 
   prev() {
     this.index--;
     if (this.index < 0) {
-      this.index = this.opponents.length -1
+      this.index = this.opponents.length - 1;
     }
-    this.context.$implicit = this.opponents[this.index]
+    this.context.$implicit = this.opponents[this.index];
   }
 
   ngOnInit(): void {
@@ -41,12 +47,10 @@ export class ScheduleDirective implements OnInit {
       $implicit: this.opponents[0],
       controller: {
         next: () => this.next(),
-        prev: () => this.prev()
-      }
-    }
-    console.log(this.context)
-    
-    this.viewContainerRef.createEmbeddedView(this.templateRef, this.context)
-  }
+        prev: () => this.prev(),
+      },
+    };
 
+    this.viewContainerRef.createEmbeddedView(this.templateRef, this.context);
+  }
 }
