@@ -61,7 +61,9 @@ import { Routes, RouterModule } from '@angular/router';
       httpInterceptor: {
         allowedList: [
           'http://localhost:5000/api/players',
+          'http://localhost:5000/api/characters',
           'http://localhost:5000/account/myplayers',
+          'http://localhost:5000/account/mycharacters',
         ],
       },
     }),

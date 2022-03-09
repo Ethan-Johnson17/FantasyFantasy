@@ -6,8 +6,8 @@ export class CharactersController extends BaseController {
   constructor() {
     super('/api/characters')
     this.router
-      // .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .get('/:id', this.getById)
       .delete('/:id', this.remove)
@@ -35,7 +35,7 @@ export class CharactersController extends BaseController {
 
   async create(req, res, next) {
     try {
-      // req.body.accountId = req.userInfo.id
+      req.body.accountId = req.userInfo.id
       const character = await charactersService.create(req.body)
       return res.send(character)
     } catch (error) {
