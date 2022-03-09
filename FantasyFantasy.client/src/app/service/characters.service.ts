@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Player } from '../Player';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FPlayer } from '../FPlayer';
 
 const HttpOptions = {
   headers: new HttpHeaders({
@@ -37,4 +38,5 @@ export class CharactersService {
   signPlayer(player: Player): Observable<Player> {
     return this.http.post<Player>(this.apiUrl, player, HttpOptions);
   }
+  createCharacter(fplayer: FPlayer) {}
 }
