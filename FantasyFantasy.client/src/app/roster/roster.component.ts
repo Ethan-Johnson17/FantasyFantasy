@@ -9,6 +9,7 @@ import * as fPlayersData from '../../../players.json';
 import { AccountService } from '../service/account.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { Account } from '../Account';
+import { Character } from '../Character';
 
 @Component({
   selector: 'app-roster',
@@ -20,6 +21,7 @@ export class RosterComponent implements OnInit {
   availablePlayers: FPlayer[] = [];
   fPlayers: FPlayer[] = [];
   fantasyTeam: FPlayer[] = [];
+  squad: Character[] = [];
   showAddPlayer!: boolean;
   subscription!: Subscription;
   year!: number;
@@ -91,7 +93,9 @@ export class RosterComponent implements OnInit {
     this.playersService
       .addPlayer(fplayer)
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
-    this.charactersService.createCharacter(fplayer);
+    this.charactersService
+      .createCharacter(fplayer)
+      .subscribe((character) => this.squad.push(character));
   }
 
   removeFromTeam(fplayer: FPlayer) {

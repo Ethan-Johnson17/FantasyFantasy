@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 
 export const CharacterSchema = new Schema(
   {
-    characterName: { type: String, required: true },
+    characterName: { type: String },
     race: { type: String, required: true },
-    class: { type: String },
+    class: { type: String, required: true },
     weapon: { type: String },
     accountId: { type: String },
     playerId: { type: String }
