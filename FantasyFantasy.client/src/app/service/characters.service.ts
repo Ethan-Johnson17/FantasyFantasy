@@ -58,12 +58,11 @@ export class CharactersService {
         } else {
           characterClass = 'Ranger';
         }
-        level -= stats.passing.int + stats.fumbles_lost;
-        if (stats.passing.passing_yds) {
-          level += Math.floor(
-            (stats.passing.passing_yds + stats.rushing.rushing_td) / 100
-          );
-        }
+        level -= stats.passing.int;
+        console.log('level', level);
+        level += Math.floor(
+          (stats.passing.passing_yds + stats.rushing.rushing_td) / 100
+        );
         level += stats.passing.passing_td + stats.rushing.rushing_td;
         break;
       case 'WR':
@@ -73,7 +72,6 @@ export class CharactersService {
         } else {
           characterClass = 'Paladin';
         }
-        level -= stats.fumbles_lost;
         if (stats.receiving.receiving_yds) {
           level += Math.floor(
             (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
@@ -88,7 +86,6 @@ export class CharactersService {
         } else {
           characterClass = 'Fighter';
         }
-        level -= stats.fumbles_lost;
         if (stats.receiving.receiving_yds) {
           level += Math.floor(
             (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
@@ -103,7 +100,6 @@ export class CharactersService {
         } else {
           characterClass = 'Wizard';
         }
-        level -= stats.fumbles_lost;
         if (stats.receiving.receiving_yds) {
           level += Math.floor(
             (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
@@ -118,7 +114,6 @@ export class CharactersService {
         } else {
           characterClass = 'Barbarian';
         }
-        level -= stats.fumbles_lost;
         if (stats.receiving.receiving_yds) {
           level += Math.floor(
             (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100

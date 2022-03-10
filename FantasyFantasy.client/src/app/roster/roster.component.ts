@@ -100,6 +100,7 @@ export class RosterComponent implements OnInit {
     this.playersService
       .addPlayer(fplayer)
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
+    console.log(fplayer);
     this.displayStyle = 'block';
     this.player = fplayer;
   }
