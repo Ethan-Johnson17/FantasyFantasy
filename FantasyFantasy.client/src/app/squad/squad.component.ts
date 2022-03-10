@@ -27,4 +27,6 @@ export class SquadComponent implements OnInit {
       .getMyCharacters()
       .subscribe((squad) => (this.squad = squad));
   }
+
+  activateCharacter(character: Character) {}
 }

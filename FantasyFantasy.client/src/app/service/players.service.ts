@@ -33,9 +33,9 @@ export class PlayersService {
     return players;
   }
 
-  getFantasyPlayersQuery(data: { year: number }) {
+  getFantasyPlayersQuery(data: { year: number; week: number }) {
     const players = this.http.get<FPlayer[]>(
-      this.fantasyApiUrl + `${data.year}/all`
+      this.fantasyApiUrl + `${data.year}/${data.week}`
     );
     return players;
   }

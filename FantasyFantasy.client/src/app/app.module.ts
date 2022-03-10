@@ -24,6 +24,7 @@ import { AuthModule, AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 
 import { Routes, RouterModule } from '@angular/router';
+import { CharacterComponent } from './squad/character/character.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { Routes, RouterModule } from '@angular/router';
     LogoutButtonComponent,
     SquadComponent,
     ProfileComponent,
+    CharacterComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,10 +40,16 @@ export class CharactersService {
   signPlayer(player: Player): Observable<Player> {
     return this.http.post<Player>(this.apiUrl + 'players', player, HttpOptions);
   }
-  createCharacter(fplayer: FPlayer) {
+
+  skillLevel(level: number) {
+    return Math.floor(Math.random() * level) + 10;
+  }
+  createCharacter(fplayer: FPlayer, characterName: string) {
     let race;
     let characterClass;
+    let level = 5;
     let team = fplayer.team;
+    let stats = fplayer.stats;
     switch (fplayer.position) {
       case 'QB':
         race = 'Elf';
@@ -52,6 +58,13 @@ export class CharactersService {
         } else {
           characterClass = 'Ranger';
         }
+        level -= stats.passing.int + stats.fumbles_lost;
+        if (stats.passing.passing_yds) {
+          level += Math.floor(
+            (stats.passing.passing_yds + stats.rushing.rushing_td) / 100
+          );
+        }
+        level += stats.passing.passing_td + stats.rushing.rushing_td;
         break;
       case 'WR':
         race = 'Human';
@@ -60,6 +73,13 @@ export class CharactersService {
         } else {
           characterClass = 'Paladin';
         }
+        level -= stats.fumbles_lost;
+        if (stats.receiving.receiving_yds) {
+          level += Math.floor(
+            (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
+          );
+        }
+        level += stats.receiving.receiving_td + stats.rushing.rushing_td;
         break;
       case 'RB':
         race = 'Dwarf';
@@ -68,6 +88,13 @@ export class CharactersService {
         } else {
           characterClass = 'Fighter';
         }
+        level -= stats.fumbles_lost;
+        if (stats.receiving.receiving_yds) {
+          level += Math.floor(
+            (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
+          );
+        }
+        level += stats.receiving.receiving_td + stats.rushing.rushing_td;
         break;
       case 'HB':
         race = 'Gnome';
@@ -76,6 +103,13 @@ export class CharactersService {
         } else {
           characterClass = 'Wizard';
         }
+        level -= stats.fumbles_lost;
+        if (stats.receiving.receiving_yds) {
+          level += Math.floor(
+            (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
+          );
+        }
+        level += stats.receiving.receiving_td + stats.rushing.rushing_td;
         break;
       case 'TE':
         race = 'HalfOrc';
@@ -84,6 +118,13 @@ export class CharactersService {
         } else {
           characterClass = 'Barbarian';
         }
+        level -= stats.fumbles_lost;
+        if (stats.receiving.receiving_yds) {
+          level += Math.floor(
+            (stats.receiving.receiving_yds + stats.rushing.rushing_td) / 100
+          );
+        }
+        level += stats.receiving.receiving_td + stats.rushing.rushing_td;
         break;
       case 'DEF':
         race = 'Halfling';
@@ -92,9 +133,20 @@ export class CharactersService {
         } else {
           characterClass = 'Rogue';
         }
+        level = 7;
         break;
     }
-    let newCharacter = { race: `${race}`, class: `${characterClass}` };
+    let newCharacter = {
+      race: race,
+      class: characterClass,
+      characterName: characterName,
+      Strength: this.skillLevel(level),
+      Dexterity: this.skillLevel(level),
+      Constitution: this.skillLevel(level),
+      Wisdom: this.skillLevel(level),
+      Intelligence: this.skillLevel(level),
+      Charisma: this.skillLevel(level),
+    };
     return this.http.post<Character>(
       this.apiUrl + 'characters',
       newCharacter,

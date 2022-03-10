@@ -22,10 +22,12 @@ export class RosterComponent implements OnInit {
   fPlayers: FPlayer[] = [];
   fantasyTeam: FPlayer[] = [];
   squad: Character[] = [];
+  player!: FPlayer;
   showAddPlayer!: boolean;
   subscription!: Subscription;
   year!: number;
   week!: number;
+  characterName!: string;
   player_name!: string;
   playerPosition!: string;
   profileJson: string = '';
@@ -89,13 +91,17 @@ export class RosterComponent implements OnInit {
     this.uiService.toggleAddPlayer();
   }
 
+  closePopup() {
+    this.displayStyle = 'none';
+  }
+  displayStyle = 'none';
+
   addToTeam(fplayer: FPlayer) {
     this.playersService
       .addPlayer(fplayer)
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
-    this.charactersService
-      .createCharacter(fplayer)
-      .subscribe((character) => this.squad.push(character));
+    this.displayStyle = 'block';
+    this.player = fplayer;
   }
 
   removeFromTeam(fplayer: FPlayer) {
@@ -109,18 +115,25 @@ export class RosterComponent implements OnInit {
       );
   }
 
-  async yearSelection() {
-    if (!this.year) {
+  async dateSelection() {
+    if (!this.year || !this.week) {
       alert('Please add more information');
       return;
     } else if (this.year < 1999 || this.year > 2019) {
       alert('invalid entry');
       return;
     }
-    let data = { year: this.year };
+    let data = { year: this.year, week: this.week };
     return await this.playersService
       .getFantasyPlayersQuery(data)
       .subscribe((p) => (this.fPlayers = p));
+  }
+
+  nameCharacter() {
+    this.charactersService
+      .createCharacter(this.player, this.characterName)
+      .subscribe((character) => this.squad.push(character));
+    this.displayStyle = 'none';
   }
 
   filterPlayers() {

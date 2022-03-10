@@ -1,0 +1,60 @@
+<div (dblclick)="onToggle(character)" class="row my-3 border border-dark">
+  <div class="col-md-3">
+    <h5 class="me-2">{{ character.characterName }}</h5>
+    <div class="col-md-3">
+      {{ character.class }}
+    </div>
+    <div class="col-md-3">
+      {{ character.race }}
+    </div>
+  </div>
+  <!-- <div class="col-md-3"></div> -->
+  <!-- <div class="col-md-3">
+    Fantasy Points: {{ character.fantasy_points.standard.toFixed(2) }}
+  </div> -->
+  <!-- <div class="col-md-6" [ngSwitch]="character.position">
+    <div class="row" *ngSwitchCase="'QB'">
+      <div class="col-md-6">
+        <p>Passing yards: {{ character.stats.passing.passing_yds }}</p>
+        <p>Passing TDs: {{ character.stats.passing.passing_td }}</p>
+      </div>
+      <div class="col-md-6">
+        <p>Rushing yards: {{ character.stats.rushing.rushing_yds }}</p>
+        <p>Rushing TDs: {{ character.stats.rushing.rushing_td }}</p>
+      </div>
+    </div>
+    <div class="row" *ngSwitchCase="'RB'">
+      <div class="col-md-6">
+        <p>Rushing yards: {{ character.stats.rushing.rushing_yds }}</p>
+        <p>Rushing TDs: {{ character.stats.rushing.rushing_td }}</p>
+      </div>
+      <div class="col-md-6">
+        <p>Receiving yards: {{ character.stats.receiving.receiving_yds }}</p>
+        <p>Receiving TDs: {{ character.stats.receiving.receiving_td }}</p>
+      </div>
+    </div>
+    <div class="row" *ngSwitchCase="'HB'">
+      <div class="col-md-6">
+        <p>Rushing yards: {{ character.stats.rushing.rushing_yds }}</p>
+        <p>Rushing TDs: {{ character.stats.rushing.rushing_td }}</p>
+      </div>
+      <div class="col-md-6">
+        <p>Receiving yards: {{ character.stats.receiving.receiving_yds }}</p>
+        <p>Receiving TDs: {{ character.stats.receiving.receiving_td }}</p>
+      </div>
+    </div>
+    <div class="row" *ngSwitchCase="'WR'">
+      <div class="col-md-6">
+        <p>Receiving yards: {{ character.stats.receiving.receiving_yds }}</p>
+        <p>Receiving TDs: {{ character.stats.receiving.receiving_td }}</p>
+      </div>
+    </div>
+    <div class="row" *ngSwitchCase="'TE'">
+      <div class="col-md-6">
+        <p>Receiving yards: {{ character.stats.receiving.receiving_yds }}</p>
+        <p>Receiving TDs: {{ character.stats.receiving.receiving_td }}</p>
+      </div>
+    </div>
+    <div *ngSwitchDefault>Stats Unavailable</div>
+  </div> -->
+</div>

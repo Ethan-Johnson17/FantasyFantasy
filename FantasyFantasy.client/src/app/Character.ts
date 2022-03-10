@@ -6,4 +6,10 @@ export interface Character {
   weapon: string;
   accountId: string;
   playerId: string;
+  Strength: number;
+  Dexterity: number;
+  Constitution: number;
+  Wisdom: number;
+  Intelligence: number;
+  Charisma: number;
 }

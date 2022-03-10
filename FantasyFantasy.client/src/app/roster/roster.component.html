@@ -71,7 +71,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="row">
-          <form (ngSubmit)="yearSelection()">
+          <form (ngSubmit)="dateSelection()">
             <div class="form-control my-1 col-md-5">
               <label class="form-label me-2" for="year">Year</label>
               <input
@@ -79,14 +79,14 @@
                 name="year"
                 [(ngModel)]="year"
                 id="year"
-                placeholder="1999-2021"
-                max="2021"
+                placeholder="1999-2019"
+                max="2019"
                 min="1999"
                 required
               />
             </div>
             <!-- NOTE This is for weekly scores -->
-            <!-- <div class="form-control my-1 col-md-4">
+            <div class="form-control my-1 col-md-4">
               <label class="form-label me-2" for="week">Week</label>
               <input
                 type="number"
@@ -98,7 +98,7 @@
                 max="17"
                 required
               />
-            </div> -->
+            </div>
             <button class="mdc-button mdc-button--raised" type="submit">
               <span class="mdc-button__label">Get Results</span>
             </button>
@@ -137,5 +137,42 @@
       (toggleFPlayer)="addToTeam(fplayer)"
     >
     </app-f-players>
+  </div>
+
+  <div class="modal" tabindex="-1" [ngStyle]="{ display: displayStyle }">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Name Character</h5>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="(nameCharacter)">
+            <div class="form-control my-1 col-md-5">
+              <label class="form-label me-2" for="characterName"
+                >Character Name:</label
+              >
+              <input
+                type="text"
+                name="characterName"
+                [(ngModel)]="characterName"
+                id="characterName"
+                placeholder="Character Name..."
+                minlength="2"
+                required
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="nameCharacter()"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
