@@ -1,31 +1,41 @@
 <div id="schedule" class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
       <h2>Schedule:</h2>
+    </div>
+    <div class="col-md-3">
+      <h2>Chapter:</h2>
     </div>
   </div>
   <div
     class="row"
     *appSchedule="let opponent; from: opponents; let ctrl = controller"
   >
-    <div class="col-md-12 mb-3">
-      {{ opponent }}
+    <div class="col-md-3 mb-3">
+      {{ opponent.team }}
     </div>
-    <div class="col-md-3">
-      <button
-        class="mdc-button mdc-button--outlined btn-dark"
-        (click)="ctrl.prev()"
-      >
-        <span class="mdc-button__label">Previous Week</span>
-      </button>
+    <div class="col-md-3 mb-3">
+      {{ opponent.chapter }}
     </div>
-    <div class="col-md-3">
-      <button
-        class="mdc-button mdc-button--outlined btn-dark"
-        (click)="ctrl.next()"
-      >
-        <span class="mdc-button__label">Next Week</span>
-      </button>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
+          <button
+            class="mdc-button mdc-button--outlined btn-dark"
+            (click)="ctrl.prev()"
+          >
+            <span class="mdc-button__label">Previous</span>
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button
+            class="mdc-button mdc-button--outlined btn-dark"
+            (click)="ctrl.next()"
+          >
+            <span class="mdc-button__label">Next</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

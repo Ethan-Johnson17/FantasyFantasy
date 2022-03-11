@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 export interface CarouselContext {
-  $implicit: string;
+  $implicit: any;
   controller: {
     next: () => void;
     prev: () => void;
@@ -23,7 +23,7 @@ export class ScheduleDirective implements OnInit {
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef
   ) {}
-  @Input('appScheduleFrom') opponents!: string[];
+  @Input('appScheduleFrom') opponents!: any[];
   index = 0;
 
   next() {
