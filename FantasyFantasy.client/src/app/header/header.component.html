@@ -1,24 +1,24 @@
 <nav class="container-fluid bg-dark justify-content-evenly">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3 pt-1">
       <h1>FantasyFantasy</h1>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3 text-end ps-2 pt-3">
+      <a class="mx-3 f-16" [routerLink]="['/roster']">Roster</a>
+      <a class="mx-3 f-16" [routerLink]="['/squad']">Squad</a>
+      <!-- <a class="mx-3 f-16" href="#fas">Available Players</a>
+      <a class="mx-3 f-16" href="#fs">Fantasy Scores</a> -->
+      <!-- <a class="mx-3 f-16" href="#staff">Staff</a> -->
+      <a class="mx-3 f-16" href="#schedule">Schedule</a>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <app-profile></app-profile>
       <app-login-button
         *ngIf="(auth.isAuthenticated$ | async) === false"
       ></app-login-button>
       <app-logout-button
         *ngIf="(auth.isAuthenticated$ | async) === true"
       ></app-logout-button>
-    </div>
-    <app-profile></app-profile>
-    <div class="col-md-6 text-end mt-3">
-      <a class="mx-3" [routerLink]="['/roster']">Roster</a>
-      <a class="mx-3" [routerLink]="['/squad']">Squad</a>
-      <!-- <a class="mx-3" href="#fas">Available Players</a>
-      <a class="mx-3" href="#fs">Fantasy Scores</a> -->
-      <!-- <a class="mx-3" href="#staff">Staff</a> -->
-      <a class="mx-3" href="#schedule">Schedule</a>
     </div>
   </div>
 
