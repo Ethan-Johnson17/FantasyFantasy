@@ -18,7 +18,7 @@
   <!-- </div> -->
   <h2>Fantasy Team</h2>
   <app-f-players
-    class="row border border-3 rounded my-2 border-success action"
+    class="row action"
     *ngFor="let fplayer of fantasyTeam"
     [fplayer]="fplayer"
     (toggleFPlayer)="removeFromTeam(fplayer)"

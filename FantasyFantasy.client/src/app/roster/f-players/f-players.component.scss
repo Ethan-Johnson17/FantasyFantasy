@@ -1,0 +1,24 @@
+.hover-style {
+  transition: 700ms;
+}
+
+:hover.hover-style {
+  transform: scale(1.05);
+  transition: 700ms;
+
+  .hidden {
+    visibility: visible;
+    cursor: pointer;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  left: 99%;
+  top: -9%;
+  width: 30px;
+  padding: 5px;
+}
