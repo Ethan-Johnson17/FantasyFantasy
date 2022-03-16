@@ -46,8 +46,8 @@ export class CharactersController extends BaseController {
   async remove(req, res, next) {
     try {
       const userId = req.userInfo.id
-      const characterId = req.params.id
-      await charactersService.remove(characterId, userId)
+      const playerId = req.params.playerId
+      await charactersService.remove(playerId, userId)
       res.send('Your character is dead')
     } catch (error) {
       next(error)

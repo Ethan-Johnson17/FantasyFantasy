@@ -20,13 +20,13 @@ class CharactersService {
     return character.populate('account')
   }
 
-  async remove(characterId, userId) {
-    const character = await this.getById(characterId)
+  async remove(playerId, userId) {
+    const character = await this.getById(playerId)
     if (character.accountId.toString() !== userId) {
       throw new Forbidden('Access denied!!')
     }
-    await dbContext.Characters.findByIdAndDelete(characterId)
-    await dbContext.Players.findByIdAndDelete({ characterId: characterId, accountId: userId })
+    await dbContext.Characters.findByIdAndDelete(playerId)
+    await dbContext.Players.findByIdAndDelete({ playerId: playerId, accountId: userId })
   }
 
   async edit(body) {

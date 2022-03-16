@@ -1,5 +1,5 @@
 export interface FPlayer {
-  id?: number;
+  id?: string;
   fantasy_points: any;
   player_name: string;
   position: string;

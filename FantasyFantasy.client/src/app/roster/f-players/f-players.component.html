@@ -2,7 +2,10 @@
   (dblclick)="onToggle(fplayer)"
   class="hover-style border border-3 rounded my-2 border-success action"
 >
-  <i class="mdi mdi-close-thick bg-danger hidden rounded-circle"></i>
+  <i
+    (click)="releasePlayer(fplayer)"
+    class="mdi mdi-close-thick bg-danger hidden rounded-circle"
+  ></i>
   <div class="col-md-3">
     <p>
       <strong class="me-2">{{ fplayer.player_name }}</strong

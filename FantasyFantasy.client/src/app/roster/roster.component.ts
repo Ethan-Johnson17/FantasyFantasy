@@ -75,6 +75,8 @@ export class RosterComponent implements OnInit {
   // }
 
   onRemovePlayer(player: FPlayer) {
+    console.log('players');
+
     this.playersService
       .deletePlayer(player)
       .subscribe(
@@ -100,12 +102,13 @@ export class RosterComponent implements OnInit {
     this.playersService
       .addPlayer(fplayer)
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
-    console.log(fplayer);
     this.displayStyle = 'block';
     this.player = fplayer;
   }
 
   removeFromTeam(fplayer: FPlayer) {
+    console.log('players');
+
     this.playersService
       .removePlayer(fplayer)
       .subscribe(
@@ -113,6 +116,11 @@ export class RosterComponent implements OnInit {
           (this.fantasyTeam = this.fantasyTeam.filter(
             (p) => p.id !== fplayer.id
           ))
+      );
+    this.charactersService
+      .removeCharacter(fplayer)
+      .subscribe(
+        () => (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
       );
   }
 

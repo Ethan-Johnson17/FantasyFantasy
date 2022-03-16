@@ -20,4 +20,8 @@ export class FPlayersComponent implements OnInit {
   onToggle(fplayer: FPlayer) {
     this.toggleFPlayer.emit(fplayer);
   }
+
+  releasePlayer(fplayer: FPlayer) {
+    this.removeFPlayer.emit(fplayer);
+  }
 }

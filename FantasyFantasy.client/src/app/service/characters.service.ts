@@ -148,4 +148,9 @@ export class CharactersService {
       HttpOptions
     );
   }
+
+  removeCharacter(fplayer: FPlayer) {
+    const url = `${this.apiUrl}/${fplayer.id}`;
+    return this.http.delete<Character>(url);
+  }
 }
