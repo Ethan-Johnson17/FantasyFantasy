@@ -75,7 +75,7 @@ export class RosterComponent implements OnInit {
   // }
 
   onRemovePlayer(player: FPlayer) {
-    console.log('players');
+    console.log(player);
 
     this.playersService
       .deletePlayer(player)
@@ -106,9 +106,8 @@ export class RosterComponent implements OnInit {
     this.player = fplayer;
   }
 
+  // NOTE This is the one in use
   removeFromTeam(fplayer: FPlayer) {
-    console.log('players');
-
     this.playersService
       .removePlayer(fplayer)
       .subscribe(
@@ -117,11 +116,11 @@ export class RosterComponent implements OnInit {
             (p) => p.id !== fplayer.id
           ))
       );
-    this.charactersService
-      .removeCharacter(fplayer)
-      .subscribe(
-        () => (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
-      );
+    // this.charactersService
+    //   .removeCharacter(fplayer)
+    //   .subscribe(
+    //     () => (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
+    //   );
   }
 
   async dateSelection() {

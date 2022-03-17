@@ -31,5 +31,14 @@ class PlayersService {
     const signedPlayer = await dbContext.Players.findOneAndUpdate({ _id: body.id, accountId: body.accountId }, body, { new: true })
     return signedPlayer
   }
+
+  async remove(playerId, userId) {
+    const character = await this.getById(playerId)
+    if (character.accountId.toString() !== userId) {
+      throw new Forbidden('Access denied!!')
+    }
+    await dbContext.Characters.findByIdAndDelete(playerId)
+    await dbContext.Players.findByIdAndDelete(playerId)
+  }
 }
 export const playersService = new PlayersService()

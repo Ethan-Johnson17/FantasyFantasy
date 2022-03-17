@@ -15,7 +15,7 @@ const HttpOptions = {
   providedIn: 'root',
 })
 export class CharactersService {
-  private apiUrl = 'http://localhost:5000/api/';
+  private apiUrl = 'http://localhost:5000/api';
   private faApiUrl = 'http://localhost:5000/api/availablePlayers';
 
   constructor(private http: HttpClient) {}
@@ -28,7 +28,7 @@ export class CharactersService {
   }
 
   deletePlayer(player: Player): Observable<Player> {
-    const url = `${this.apiUrl}/${player?.id}`;
+    const url = `${this.apiUrl}/${player.id}`;
     return this.http.delete<Player>(url);
   }
 
@@ -150,7 +150,7 @@ export class CharactersService {
   }
 
   removeCharacter(fplayer: FPlayer) {
-    const url = `${this.apiUrl}/${fplayer.id}`;
+    const url = `${this.apiUrl}/characters/${fplayer.id}`;
     return this.http.delete<Character>(url);
   }
 }

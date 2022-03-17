@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { playersService } from '../services/PlayersService'
 import BaseController from '../utils/BaseController'
@@ -7,10 +8,10 @@ export class PlayersController extends BaseController {
     super('api/players')
     this.router
       .get('', this.getAll)
+      .delete('/:id', this.remove)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .post('/all', this.createAll)
-      .delete('/:id', this.remove)
   }
 
   async getAll(req, res, next) {
@@ -68,9 +69,10 @@ export class PlayersController extends BaseController {
 
   async remove(req, res, next) {
     try {
-      req.body.accountId = req.userInfo.id
-      const player = playersService.create(req.body)
-      return res.send(player)
+      const userId = req.account.id
+      const playerId = req.params.id
+      await playersService.remove(playerId, userId)
+      res.send('Your player is released')
     } catch (error) {
       next(error)
     }
