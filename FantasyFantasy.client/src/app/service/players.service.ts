@@ -52,11 +52,6 @@ export class PlayersService {
     return this.http.delete<FPlayer>(url);
   }
 
-  deletePlayer(player: FPlayer): Observable<FPlayer> {
-    const url = `${this.teamUrl}/${player.id}`;
-    return this.http.delete<FPlayer>(url);
-  }
-
   togglePlayer(player: FPlayer): Observable<FPlayer> {
     const url = `${this.teamUrl}/${player?.id}`;
     return this.http.put<FPlayer>(url, player, HttpOptions);

@@ -62,28 +62,6 @@ export class RosterComponent implements OnInit {
       .subscribe((fantasyTeam) => (this.fantasyTeam = fantasyTeam));
   }
 
-  // findPlayer(playerName: any) {
-  //   const found = this.players.find((p) => p.playerName == playerName);
-  //   if (found?.playerName == playerName) {
-  //   }
-  // }
-
-  // addPlayer(newPlayer: Player) {
-  //   this.playerService
-  //     .signPlayer(newPlayer)
-  //     .subscribe((newPlayer) => this.players.push(newPlayer));
-  // }
-
-  onRemovePlayer(player: FPlayer) {
-    console.log(player);
-
-    this.playersService
-      .deletePlayer(player)
-      .subscribe(
-        () => (this.players = this.players.filter((p) => p.id !== player.id))
-      );
-  }
-
   toggleStarter(player: FPlayer) {
     player.starter = !player.starter;
     this.playersService.togglePlayer(player).subscribe();
@@ -116,11 +94,11 @@ export class RosterComponent implements OnInit {
             (p) => p.id !== fplayer.id
           ))
       );
-    // this.charactersService
-    //   .removeCharacter(fplayer)
-    //   .subscribe(
-    //     () => (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
-    //   );
+    this.charactersService
+      .removeCharacter(fplayer)
+      .subscribe(
+        () => (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
+      );
   }
 
   async dateSelection() {

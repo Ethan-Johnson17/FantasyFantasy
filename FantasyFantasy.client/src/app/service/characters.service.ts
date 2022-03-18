@@ -20,27 +20,6 @@ export class CharactersService {
 
   constructor(private http: HttpClient) {}
 
-  getPlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(this.apiUrl);
-  }
-  getAvailablePlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(this.faApiUrl);
-  }
-
-  deletePlayer(player: Player): Observable<Player> {
-    const url = `${this.apiUrl}/${player.id}`;
-    return this.http.delete<Player>(url);
-  }
-
-  togglePlayer(player: Player): Observable<Player> {
-    const url = `${this.apiUrl}/${player?.id}`;
-    return this.http.put<Player>(url, player, HttpOptions);
-  }
-
-  signPlayer(player: Player): Observable<Player> {
-    return this.http.post<Player>(this.apiUrl + 'players', player, HttpOptions);
-  }
-
   skillLevel(level: number) {
     return Math.floor(Math.random() * level) + 10;
   }
