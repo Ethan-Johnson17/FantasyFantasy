@@ -108,8 +108,8 @@ export class RosterComponent implements OnInit {
 
   // NOTE This is the one in use
   removeFromTeam(fplayer: FPlayer) {
-    this.playersService
-      .removePlayer(fplayer)
+    this.accountService
+      .deletePlayer(fplayer)
       .subscribe(
         () =>
           (this.fantasyTeam = this.fantasyTeam.filter(

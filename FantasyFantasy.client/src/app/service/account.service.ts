@@ -23,4 +23,9 @@ export class AccountService {
   getMyCharacters(): Observable<Character[]> {
     return this.http.get<Character[]>(this.apiUrl + '/mycharacters');
   }
+
+  deletePlayer(player: FPlayer): Observable<FPlayer> {
+    const url = `${this.apiUrl}/myplayers/${player.id}`;
+    return this.http.delete<FPlayer>(url);
+  }
 }

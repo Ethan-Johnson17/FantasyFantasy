@@ -12,6 +12,7 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .get('/myplayers', this.getMyPlayers)
       .get('/mycharacters', this.getMyCharacters)
+      .delete('myplayers/:id', this.removePlayer)
   }
 
   async getMyPlayers(req, res, next) {
@@ -38,6 +39,17 @@ export class AccountController extends BaseController {
     try {
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async removePlayer(req, res, next) {
+    try {
+      const userId = req.userInfo.id
+      const playerId = req.params.id
+      await playersService.remove(playerId, userId)
+      res.send('Your player is released')
     } catch (error) {
       next(error)
     }

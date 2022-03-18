@@ -143,7 +143,7 @@ export class CharactersService {
       Charisma: this.skillLevel(level),
     };
     return this.http.post<Character>(
-      this.apiUrl + 'characters',
+      this.apiUrl + '/characters',
       newCharacter,
       HttpOptions
     );
