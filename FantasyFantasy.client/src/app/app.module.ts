@@ -62,10 +62,8 @@ import { CharacterComponent } from './squad/character/character.component';
       serverUrl: 'http://localhost:5000',
       httpInterceptor: {
         allowedList: [
-          'http://localhost:5000/api/players',
-          'http://localhost:5000/api/characters',
-          'http://localhost:5000/account/myplayers',
-          'http://localhost:5000/account/mycharacters',
+          'http://localhost:5000/api/*',
+          'http://localhost:5000/account/*',
         ],
       },
     }),
