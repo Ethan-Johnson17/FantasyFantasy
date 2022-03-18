@@ -108,6 +108,7 @@ export class RosterComponent implements OnInit {
 
   // NOTE This is the one in use
   removeFromTeam(fplayer: FPlayer) {
+    console.log(localStorage.setItem);
     this.accountService
       .deletePlayer(fplayer)
       .subscribe(

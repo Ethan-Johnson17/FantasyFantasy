@@ -12,7 +12,7 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .get('/myplayers', this.getMyPlayers)
       .get('/mycharacters', this.getMyCharacters)
-      .delete('myplayers/:id', this.removePlayer)
+      .delete('/myplayers/:id', this.removePlayer)
   }
 
   async getMyPlayers(req, res, next) {
