@@ -22,6 +22,7 @@ export class RosterComponent implements OnInit {
   fPlayers: FPlayer[] = [];
   fantasyTeam: FPlayer[] = [];
   squad: Character[] = [];
+  character!: Character;
   player!: FPlayer;
   showAddPlayer!: boolean;
   subscription!: Subscription;
@@ -60,6 +61,9 @@ export class RosterComponent implements OnInit {
     this.accountService
       .getMyPlayers()
       .subscribe((fantasyTeam) => (this.fantasyTeam = fantasyTeam));
+    this.accountService
+      .getMyCharacters()
+      .subscribe((squad) => (this.squad = squad));
   }
 
   toggleStarter(player: FPlayer) {
@@ -82,9 +86,10 @@ export class RosterComponent implements OnInit {
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
     this.displayStyle = 'block';
     this.player = fplayer;
+    console.log('team', this.fantasyTeam, 'squad', this.squad);
   }
 
-  // NOTE This is the one in use
+  // FIXME This still doesn't remove character at the same time and it requires refresh.
   removeFromTeam(fplayer: FPlayer) {
     this.playersService
       .removePlayer(fplayer)
@@ -94,11 +99,16 @@ export class RosterComponent implements OnInit {
             (p) => p.id !== fplayer.id
           ))
       );
-    this.charactersService
-      .removeCharacter(fplayer)
-      .subscribe(
-        () => (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
-      );
+    let found = this.squad.find((c) => c.playerId === fplayer.id);
+    console.log('found', found, this.squad);
+    if (found) {
+      this.charactersService
+        .removeCharacter(found)
+        .subscribe(
+          () =>
+            (this.squad = this.squad.filter((c) => c.playerId !== fplayer.id))
+        );
+    }
   }
 
   async dateSelection() {
@@ -120,6 +130,12 @@ export class RosterComponent implements OnInit {
       .createCharacter(this.player, this.characterName)
       .subscribe((character) => this.squad.push(character));
     this.displayStyle = 'none';
+    console.log(this.player);
+    let newCharacter = this.squad.find((c) => c.playerId === this.player.id);
+    if (newCharacter) {
+      this.player.characterId = newCharacter.id;
+      this.playersService.addId(this.player);
+    }
   }
 
   filterPlayers() {

@@ -9,6 +9,7 @@ import { Character } from '../../Character';
 export class CharacterComponent implements OnInit {
   @Input() character!: Character;
   @Output() toggleCharacter: EventEmitter<Character> = new EventEmitter();
+  @Output() removeCharacter: EventEmitter<Character> = new EventEmitter();
 
   constructor() {}
 
@@ -16,5 +17,9 @@ export class CharacterComponent implements OnInit {
 
   onToggle(character: Character) {
     this.toggleCharacter.emit(character);
+  }
+
+  removeFromSquad(character: Character) {
+    this.removeCharacter.emit(character);
   }
 }

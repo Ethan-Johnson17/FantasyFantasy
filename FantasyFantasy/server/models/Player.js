@@ -8,6 +8,7 @@ export const PlayerSchema = new Schema(
     stats: { type: Object },
     team: { type: String },
     fantasy_points: { type: Object },
+    active: { type: Boolean, default: false, required: true },
     accountId: { type: String },
     characterId: { type: String }
   }, { timestamps: true, toJSON: { virtuals: true } }

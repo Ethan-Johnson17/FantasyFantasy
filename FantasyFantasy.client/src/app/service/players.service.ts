@@ -48,7 +48,6 @@ export class PlayersService {
 
   removePlayer(fplayer: FPlayer): Observable<FPlayer> {
     const url = `${this.url}/${fplayer.id}`;
-    console.log('test', fplayer);
     return this.http.delete<FPlayer>(url);
   }
 
@@ -59,5 +58,9 @@ export class PlayersService {
 
   signPlayer(player: FPlayer): Observable<FPlayer> {
     return this.http.post<FPlayer>(this.teamUrl, player, HttpOptions);
+  }
+
+  addId(fplayer: FPlayer): Observable<FPlayer> {
+    return this.http.put<FPlayer>(this.url, fplayer, HttpOptions);
   }
 }

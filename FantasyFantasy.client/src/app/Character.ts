@@ -1,5 +1,5 @@
 export interface Character {
-  id?: string;
+  id: string;
   characterName: string;
   race: string;
   class: string;
@@ -12,4 +12,5 @@ export interface Character {
   Wisdom: number;
   Intelligence: number;
   Charisma: number;
+  active: boolean;
 }

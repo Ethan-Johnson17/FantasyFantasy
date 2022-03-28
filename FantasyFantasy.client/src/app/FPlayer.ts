@@ -1,5 +1,5 @@
 export interface FPlayer {
-  id?: string;
+  id: string;
   fantasy_points: any;
   player_name: string;
   position: string;
@@ -7,4 +7,6 @@ export interface FPlayer {
   jerseyNumber: number;
   starter: boolean;
   team: string;
+  characterId: string;
+  active: boolean;
 }

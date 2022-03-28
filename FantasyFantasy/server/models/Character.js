@@ -12,6 +12,7 @@ export const CharacterSchema = new Schema(
     Wisdom: { type: Number, required: true },
     Intelligence: { type: Number, required: true },
     Charisma: { type: Number, required: true },
+    active: { type: Boolean, default: false, required: true },
     weapon: { type: String },
     accountId: { type: String },
     playerId: { type: String }

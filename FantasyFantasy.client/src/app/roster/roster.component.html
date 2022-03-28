@@ -130,7 +130,7 @@
       <button class="btn btn-primary" tybe="submit">Filter</button>
     </form>
     <app-f-players
-      class="row border border-3 rounded my-2 border-success action"
+      class="row action"
       *ngFor="let fplayer of fPlayers"
       [fplayer]="fplayer"
       (toggleFPlayer)="addToTeam(fplayer)"

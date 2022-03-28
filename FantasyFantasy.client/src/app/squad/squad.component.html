@@ -4,5 +4,6 @@
     *ngFor="let character of squad"
     [character]="character"
     (toggleCharacter)="activateCharacter(character)"
+    (removeCharacter)="removeCharacter(character)"
   ></app-character>
 </div>

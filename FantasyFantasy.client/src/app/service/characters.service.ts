@@ -120,16 +120,19 @@ export class CharactersService {
       Wisdom: this.skillLevel(level),
       Intelligence: this.skillLevel(level),
       Charisma: this.skillLevel(level),
+      playerId: fplayer.id,
     };
+    console.log(newCharacter);
     return this.http.post<Character>(
-      this.apiUrl + 'characters',
+      this.apiUrl + '/characters',
       newCharacter,
       HttpOptions
     );
   }
 
-  removeCharacter(fplayer: FPlayer) {
-    const url = `${this.apiUrl}/characters/${fplayer.id}`;
+  removeCharacter(character: Character): Observable<Character> {
+    console.log(character);
+    const url = `${this.apiUrl}/characters/${character.id}`;
     return this.http.delete<Character>(url);
   }
 }

@@ -8,8 +8,9 @@ export class PlayersController extends BaseController {
     super('api/players')
     this.router
       .get('', this.getAll)
-      .delete('/:id', this.remove)
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .put('/:id', this.edit)
+      .delete('/:id', this.remove)
       .post('', this.create)
       .post('/all', this.createAll)
   }
