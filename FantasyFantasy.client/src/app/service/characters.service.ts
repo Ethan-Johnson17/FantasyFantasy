@@ -38,7 +38,6 @@ export class CharactersService {
           characterClass = 'Ranger';
         }
         level -= stats.passing.int;
-        console.log('level', level);
         level += Math.floor(
           (stats.passing.passing_yds + stats.rushing.rushing_td) / 100
         );
@@ -122,7 +121,6 @@ export class CharactersService {
       Charisma: this.skillLevel(level),
       playerId: fplayer.id,
     };
-    console.log(newCharacter);
     return this.http.post<Character>(
       this.apiUrl + '/characters',
       newCharacter,
@@ -131,7 +129,6 @@ export class CharactersService {
   }
 
   removeCharacter(character: Character): Observable<Character> {
-    console.log(character);
     const url = `${this.apiUrl}/characters/${character.id}`;
     return this.http.delete<Character>(url);
   }

@@ -86,7 +86,6 @@ export class RosterComponent implements OnInit {
       .subscribe((fplayer) => this.fantasyTeam.push(fplayer));
     this.displayStyle = 'block';
     this.player = fplayer;
-    console.log('team', this.fantasyTeam, 'squad', this.squad);
   }
 
   // FIXME This still doesn't remove character at the same time and it requires refresh.
@@ -100,7 +99,6 @@ export class RosterComponent implements OnInit {
           ))
       );
     let found = this.squad.find((c) => c.playerId === fplayer.id);
-    console.log('found', found, this.squad);
     if (found) {
       this.charactersService
         .removeCharacter(found)
@@ -130,7 +128,6 @@ export class RosterComponent implements OnInit {
       .createCharacter(this.player, this.characterName)
       .subscribe((character) => this.squad.push(character));
     this.displayStyle = 'none';
-    console.log(this.player);
     let newCharacter = this.squad.find((c) => c.playerId === this.player.id);
     if (newCharacter) {
       this.player.characterId = newCharacter.id;

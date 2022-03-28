@@ -46,7 +46,6 @@ export class SquadComponent implements OnInit {
       );
 
     let found = this.fantasyTeam.find((p) => p.id === character.playerId);
-    console.log('hitting1');
     if (found) {
       this.playersService
         .removePlayer(found)
