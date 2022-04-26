@@ -1,4 +1,28 @@
-<nav class="container-fluid bg-dark justify-content-evenly">
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title>FantasyFantasy</ion-title>
+          <a class="mx-3 f-16" [routerLink]="['/roster']">Roster</a>
+          <a class="mx-3 f-16" [routerLink]="['/squad']">Squad</a>
+          <a class="mx-3 f-16" href="#schedule">Schedule</a>
+        </ion-col>
+        <ion-col class="d-flex justify-content-end">
+          <app-profile></app-profile>
+          <app-login-button
+            *ngIf="(auth.isAuthenticated$ | async) === false"
+          ></app-login-button>
+          <app-logout-button
+            *ngIf="(auth.isAuthenticated$ | async) === true"
+          ></app-logout-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <nav class="container-fluid bg-dark justify-content-evenly">
   <div class="row">
     <div class="col-md-3 pt-1">
       <h1>FantasyFantasy</h1>
@@ -6,9 +30,6 @@
     <div class="col-md-3 text-end ps-2 pt-3">
       <a class="mx-3 f-16" [routerLink]="['/roster']">Roster</a>
       <a class="mx-3 f-16" [routerLink]="['/squad']">Squad</a>
-      <!-- <a class="mx-3 f-16" href="#fas">Available Players</a>
-      <a class="mx-3 f-16" href="#fs">Fantasy Scores</a> -->
-      <!-- <a class="mx-3 f-16" href="#staff">Staff</a> -->
       <a class="mx-3 f-16" href="#schedule">Schedule</a>
     </div>
     <div class="col-md-6 d-flex justify-content-end">
@@ -22,5 +43,4 @@
     </div>
   </div>
 
-  <!-- <a class="nav-link" href="#">Disabled link</a> -->
-</nav>
+</nav> -->

@@ -25,6 +25,7 @@ import { environment as env } from '../environments/environment';
 
 import { Routes, RouterModule } from '@angular/router';
 import { CharacterComponent } from './squad/character/character.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CharacterComponent } from './squad/character/character.component';
         ],
       },
     }),
+    IonicModule.forRoot(),
   ],
   providers: [
     {
