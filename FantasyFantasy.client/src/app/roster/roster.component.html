@@ -24,14 +24,7 @@
     (removeFPlayer)="removeFromTeam(fplayer)"
   >
   </app-f-players>
-  <div class="row d-flex">
-    <div class="col-md-4">
-      <h4>Player Name</h4>
-    </div>
-    <div class="col-md-4 text-center"><h4>Position</h4></div>
-    <!-- <div class="col-md-4 text-center"><h4>Jersey Number</h4></div> -->
-    <hr />
-  </div>
+  <hr />
   <app-player
     [ngClass]="{ starter: player.starter, bench: !player.starter }"
     class="row border border-3 rounded my-2 border-success action"
@@ -39,33 +32,8 @@
     [player]="player"
     (onToggleStarter)="toggleStarter(player)"
   >
-    <!-- <div class="col-md-4 p-3">
-      <p>{{ player.playerName }}</p>
-    </div>
-    <div class="col-md-4 text-center p-3">
-      <p>{{ player.position }}</p>
-    </div>
-    <div class="col-md-3 text-center p-3">
-      <p>{{ player.jerseyNumber }}</p>
-    </div>
-    <div class="col-md-1 mt-2">
-      <i
-        class="mdi mdi-close-thick text-danger fs-3 action"
-        title="release player"
-        (click)="releasePlayer(player)"
-      ></i>
-    </div>
-    <div class="col-md-12">
-      <app-player></app-player>
-    </div> -->
   </app-player>
   <h3 id="fas">Available Players</h3>
-  <!-- <app-f-players
-    class="row border border-3 rounded my-2 border-success text-dark action"
-    *ngFor="let player of availablePlayers"
-    [fplayer]="player"
-  ></app-f-players>
-  <h3 id="fs">Fantasy Scores</h3> -->
   <div class="container">
     <div class="row">
       <div class="col-md-12">
